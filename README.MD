@@ -82,6 +82,7 @@ Then you can combine all of the subgroups together with the full `ArgMaster` cla
 ```
 
 To make a subgroup positional pass: `positionals=True`
+
 To make a subgroup hidden pass: `hidden=True`
 
 
@@ -97,24 +98,24 @@ Let me know if you would like to see any new features implemented!
 By default, passing `-h` or `--help` will automatically generate a help text that looks something like this.
 
 ```
-	Usage: example.py ./example.py <pos arg> --options...
+Usage: example.py ./example.py <pos arg> --options...
 
 
-	Positional Arguments:
-	  pos1 <str>        Positional argument 1.
+Positional Arguments:
+  pos1 <str>        Positional argument 1.
 
 
-	Optional Arguments:
-	  --age <int>       File age in days.  Default: 365                                                 
-	  --name <str>      Enter your name.                                                                
-	  --size <float>    Min file size in MB                                                             
-	                    As this is a multline help in the source code, the second line has been         
-	                    automatically bumped down. Starting at the word 'As'  Default: 100              
-	  --three <str>     Three items must follow this argument.                                          
-	  --verbose         Make everything very verbose. As verbosity is very important to understanding   
-	                    this is a very verbose help line. As you can see it wraps at the edge of the    
-	                    screen (or the given `wrap` value, whichever is lower), but fear not! It will   
-	                    automatically fit neatly into it's place thanks to the magic in sd/columns.py
+Optional Arguments:
+  --age <int>       File age in days.  Default: 365                                                 
+  --name <str>      Enter your name.                                                                
+  --size <float>    Min file size in MB                                                             
+                    As this is a multline help in the source code, the second line has been         
+                    automatically bumped down. Starting at the word 'As'  Default: 100              
+  --three <str>     Three items must follow this argument.                                          
+  --verbose         Make everything very verbose. As verbosity is very important to understanding   
+                    this is a very verbose help line. As you can see it wraps at the edge of the    
+                    screen (or the given `wrap` value, whichever is lower), but fear not! It will   
+                    automatically fit neatly into it's place thanks to the magic in sd/columns.py
 
 ```
 
