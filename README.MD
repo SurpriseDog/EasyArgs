@@ -50,7 +50,7 @@ Now you can pass it to a single function that will interpret the array, fill in 
 	return easy_parse(basic_args)
 ```
 
-Want to see it in use in a much LARGER project with multiple subsections including positional and HIDDEN args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
+Want to see it in use in a much larger project with multiple subsections including positional and hidden args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
 
 ---
 
@@ -117,16 +117,16 @@ Positional Arguments:
 
 
 Optional Arguments:
-  --age <int>       File age in days.  Default: 365                                            
-  --name <str>      Enter your name.                                                           
-  --size <float>    Min file size in MB                                                        
-                    As this is a multline help in the source code, the second line has been    
-                    automatically bumped down. Starting at the word 'As'  Default: 100         
-  --three <str>     Three items must follow this argument.                                     
-  --verbose         Make everything very verbose. As verbosity is very important to            
-                    understanding this is a very verbose help line. As you can see it wraps at 
+  --age <int>       File age in days.  Default: 365
+  --name <str>      Enter your name.
+  --size <float>    Min file size in MB
+                    As this is a multline help in the source code, the second line has been
+                    automatically bumped down. Starting at the word 'As'  Default: 100
+  --three <str>     Three items must follow this argument.
+  --verbose         Make everything very verbose. As verbosity is very important to
+                    understanding this is a very verbose help line. As you can see it wraps at
                     the edge of the screen (or the given `wrap` value, whichever is lower), but
-                    fear not! It will automatically fit neatly into it's place thanks to the   
+                    fear not! It will automatically fit neatly into it's place thanks to the
                     magic in sd/columns.py.
 
 ```
