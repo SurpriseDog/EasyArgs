@@ -18,7 +18,7 @@ Instead of trying to remember how to implement and type this mess (and keep it u
 You can simply create an array like so. The **format** is simply:
 
 ```
-	['alias', 'variable_name', type, default],
+	['alias', 'variable_name', type, 'default_value'],
 	"help string",
 ```
 
@@ -26,7 +26,7 @@ The best part is that everything is optional. You can include as many items in t
 
 
 
-### Example
+### Example:
 
 ```
 	basic_args = [\
@@ -47,7 +47,7 @@ Pass it to a single function that will interpret the array, fill in any missing 
 	return easy_parse(basic_args)
 ```
 
-### Lists
+### Lists:
 
 Simply use the variable type `list` or a number like `3` to specify the number of required arguments:
 
@@ -56,7 +56,7 @@ Simply use the variable type `list` or a number like `3` to specify the number o
 	"Three items must follow this argument."
 ```
 
-### Positional args and Subgroups
+### Positional args and Subgroups:
 
 For more control you can split up arguments into groups. For example If I wanted to add positional arguments:
 
@@ -78,14 +78,16 @@ Then you can combine all of the subgroups together with the full `ArgMaster` cla
 	return am.parse()
 ```
 
-### More advanced usage
+### More advanced usage:
 
 Not every feature of ArgumentParser is available automatically, but because my class is built on top of ArgumentParser, you can simply add to the parser directly with standard syntax by running commands like `am.parser.add_argument(...)` with whatever features you need.
 
 Let me know if you would like to see any new features implemented!
 
 
-### Help
+### Help:
+
+
 
 ### Try it out:
 
