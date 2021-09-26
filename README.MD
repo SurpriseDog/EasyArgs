@@ -1,8 +1,8 @@
-A more intuitive and simple way of adding arguments to argparse. Also automatically formats a help message that shows default variable names, expected type and wraps lines at the edge of the screen in neat blocks. See more in the Help section below.
+A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the Help section below or just run **example.py** to see it in action!
 
 ---
 
-
+### Format:
 
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
 
