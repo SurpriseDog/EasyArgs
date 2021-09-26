@@ -96,7 +96,7 @@ class ArgMaster():
 		width = 0                       # Max width of the variables column
 		for group in self.groups:
 			out = []
-			for args in group.args:
+			for args in group['args']:
 				msg = args['msg']
 				if msg == SUPPRESS:
 					continue
@@ -112,8 +112,8 @@ class ArgMaster():
 					width = len(alias)
 				out.append([alias, msg])
 
-			if group.sortme is not None:
-				sortme = group.sortme
+			if group['sortme'] is not None:
+				sortme = group['sortme']
 			else:
 				sortme = self.sortme
 			if sortme:
@@ -129,10 +129,10 @@ class ArgMaster():
 				print(self.newline, end='')
 				for line, _ in enumerate(out):
 					out[line][0] = tab + out[line][0].ljust(width)
-				if group.title:
-					print(group.title)	#.rstrip(':') + ':')
-				if group.description:
-					auto_cols([[tab + group.description]], wrap=wrap)
+				if 'title' in group:
+					print(group['title'])	#.rstrip(':') + ':')
+				if 'description' in group:
+					auto_cols([[tab + group['description']]], wrap=wrap)
 				auto_cols(out, wrap=wrap)
 		print()
 
@@ -284,7 +284,7 @@ def help_parser(parser, show_type=True, sortme=True, wrap=100, tab='  '):
 		--arg <int> <int> will expect 2 integers after the arg
 		wrap = word wrap instead of using full terminal. 0 = disable
 		sort = sort alphabetically. Positional variables are never sorted.
-		To sort individual groups, add a special key: group.sortme = True
+		To sort individual groups, add a special key: group['sortme'] = True
 
 		Warning: If your variable is not in a group, it will not be shown!
 	'''

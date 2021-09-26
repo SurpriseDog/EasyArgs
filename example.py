@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-# todo compile easy_args.py with built in functions using wrangler and record how you built it.
-# talk about the help formatting with auto_cols
-# side by side with default_parsers
+# An example usage of easy_args
+# Want to see it in use in a much LARGER project with multiple subsections including positional and HIDDEN args?
+# Check out the parse_args() function in:
+# https://github.com/SurpriseDog/KeyLocker/blob/master/args.py
 
 import argparse
 import easy_args
@@ -31,10 +32,13 @@ def my_parser():
 		"File age in days",
 
 		['size', '', float, 100],
-		"Min file size in MB to be considered 'large'",
+		'''
+		Min file size in MB
+		As this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'
+		''',
 
 		['verbose', '', bool],
-		"List each file deleted",
+		'''Make everything very verbose. As verbosity is very important to understanding this is a very verbose help line. As you can see it wraps at the edge of the screen (or the given `wrap` value, whichever is lower), but fear not! It will automatically fit neatly into it's place thanks to the magic in sd/columns.py''',
 
 		['three', '', 3],
 		"Three items must follow this argument.",
@@ -45,8 +49,6 @@ def my_parser():
 
 
 def main():
-	#show_args(default_parser())
-
 	print("ArgumentParser arguments:")
 	args = my_parser()
 	print("#" * 80)
