@@ -45,7 +45,7 @@ def my_parser():
 		]
 	am.update(basic_args, 'Optional Arguments:')
 
-	return am.parse(wrap=100)
+	return am.parse(wrap=95)
 
 
 def main():
