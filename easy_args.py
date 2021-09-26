@@ -6,7 +6,7 @@ import re
 import sys
 from argparse import ArgumentParser, SUPPRESS
 
-from sd.common import list_get, DotDict
+from sd.common import list_get
 from sd.columns import auto_cols
 from sd.common import undent
 
@@ -51,7 +51,7 @@ class ArgMaster():
 	def update(self, args, title=None, sortme=None, **kargs):
 		group = self.parser.add_argument_group(title)
 		args = update_parser(args, group, verbose=self.verbose, **kargs)
-		self.groups.append(DotDict(args=args, title=title, sortme=sortme))
+		self.groups.append(dict(args=args, title=title, sortme=sortme))
 
 	def parse(self, args=None, am_help=True, **kargs):
 		if not args:
@@ -97,17 +97,16 @@ class ArgMaster():
 		for group in self.groups:
 			out = []
 			for args in group.args:
-				args = DotDict(args)
-				msg = args.msg
+				msg = args['msg']
 				if msg == SUPPRESS:
 					continue
-				alias = args.alias
+				alias = args['alias']
 				if show_type:
-					if args.typ and args.typ != bool:
-						if args.typ == list:
+					if args['typ'] and args['typ'] != bool:
+						if args['typ'] == list:
 							typ = '...'
 						else:
-							typ = '<' + str(args.typ).replace('class ', '')[2:-2] + '>'
+							typ = '<' + str(args['typ']).replace('class ', '')[2:-2] + '>'
 						alias += ' ' + typ
 				if len(alias) > width:
 					width = len(alias)

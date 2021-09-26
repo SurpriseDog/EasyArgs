@@ -15,7 +15,7 @@ Instead of trying to remember how to implement and type this mess (and keep it u
 
 ```
 
-You can simply create an array like so. The format is simply:
+You can simply create an array like so. The **format** is simply:
 
 ```
 	['alias', 'variable_name', type, default],
