@@ -50,6 +50,7 @@ Now you can pass it to a single function that will interpret the array, fill in 
 	return easy_parse(basic_args)
 ```
 
+Want to see it in use in a much LARGER project with multiple subsections including positional and HIDDEN args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
 
 ---
 
