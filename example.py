@@ -13,7 +13,9 @@ def my_parser():
 	# The class itself
 	# newline is the number of newlines between groups
 	# verbose prints what each argument looks like with parser.add_argument
-	am = easy_args.ArgMaster(usage="./example.py <pos arg> --options...", newline='\n'*2, verbose=True)
+	am = easy_args.ArgMaster(usage="./example.py <pos arg> --options...",
+	                         newline='\n'*2,
+	                         verbose=True)
 
 	# A list of required Positional arguments:
 	pos_args = [\

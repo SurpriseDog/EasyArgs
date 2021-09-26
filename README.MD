@@ -2,7 +2,7 @@
 
 ---
 
-### Format:
+## Format:
 
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
 
@@ -16,18 +16,18 @@ Instead of trying to remember how to implement and type this mess (and keep it u
 
 ```
 
-You can simply create an array like so. The **format** is simply:
+You can simply create an array like so. The **format** is:
 
 ```
 	['alias', 'variable_name', type, 'default_value'],
 	"help string",
 ```
 
-The best part is that everything is optional. You can include as many items in the above list as you need or just simply: `['variable_name']`
+The best part is that everything is optional. You can include as many items in the above list as you need or just: `['variable_name']`
 
+---
 
-
-### Example:
+## Example:
 
 ```
 	basic_args = [\
@@ -50,7 +50,10 @@ Now you can pass it to a single function that will interpret the array, fill in 
 	return easy_parse(basic_args)
 ```
 
-### Lists:
+
+---
+
+## Lists:
 
 Simply use the variable type `list` or a number like `3` to specify the number of required arguments:
 
@@ -59,7 +62,10 @@ Simply use the variable type `list` or a number like `3` to specify the number o
 	"Three items must follow this argument."
 ```
 
-### Positional args, Hidden args and Subgroups:
+
+---
+
+## Positional args, Hidden args and Subgroups:
 
 For more control you can split up arguments into groups. For example, if I wanted to add positional arguments:
 
@@ -86,14 +92,18 @@ To make a subgroup positional pass: `positionals=True`
 To make a subgroup hidden pass: `hidden=True`
 
 
-### More advanced usage:
+---
+
+## More advanced usage:
 
 Not every feature of ArgumentParser is available automatically, but because my class is built on top of ArgumentParser, you can simply add to the parser directly with standard syntax by running commands like `am.parser.add_argument(...)` with whatever features you need.
 
 Let me know if you would like to see any new features implemented!
 
 
-### Help:
+---
+
+## Help:
 
 By default, passing `-h` or `--help` will automatically generate a help text that looks something like this.
 
@@ -129,8 +139,10 @@ Optional Arguments:
 
 
 
-### Try it out:
+---
 
-A full example of this you can play with is in **example.py**
+## Try it out:
+
+A full example of this you can play with is in [**example.py**](example.py)
 
 You can see what each line is doing exactly by passing `verbose=True` to the `ArgMaster` class on initialization.
