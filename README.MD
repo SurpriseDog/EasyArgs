@@ -1,4 +1,4 @@
-﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the Help section below or just run **example.py** to see it in action!
+﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the Help section below or just run [**example.py**](example.py) to see it in action!
 
 ---
 
@@ -121,7 +121,7 @@ Optional Arguments:
 ```
 
 
-Features:
+**Features**:
   * Automatically shows the help section broken up into subgroups.
   * Automatically shows the expected argument type (if non string)
   * Automatically shows the default value
