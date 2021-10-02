@@ -51,11 +51,11 @@ def my_parser():
 
 
 def main():
-	print("ArgumentParser arguments:")
+	print("ArgumentParser arguments:\n")
 	args = my_parser()
 	print("#" * 80)
 
-	print("\nArguments passed by user:")
+	print("\nArguments passed by user:\n")
 	easy_args.show_args(args)
 
 

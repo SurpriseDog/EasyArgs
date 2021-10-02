@@ -1,7 +1,8 @@
-﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the Help section below or just run [**example.py**](example.py) to see it in action!
+﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the **Help** section below or just run [**example.py**](example.py) to see it in action!
 
 ---
 
+&nbsp;
 ## Format:
 
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
@@ -9,25 +10,14 @@ Instead of trying to remember how to implement and type this mess (and keep it u
 ```
     parser = argparse.ArgumentParser(allow_abbrev=True)
     parser.add_argument('--name', dest='name', type=str, help="Enter your name")
-    parser.add_argument('--age', dest='min_age', nargs='?', type=float, default=365, help="File age in days")
+    parser.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
     parser.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
     parser.add_argument('--three', dest='three', type=str, nargs=3, help="Three items must follow this argument.")
     return parser.parse_args()
 
 ```
 
-You can simply create an array like so. The **format** is:
-
-```
-	['alias', 'variable_name', type, 'default_value'],
-	"help string",
-```
-
-The best part is that everything is optional. You can include as many items in the above list as you need or just: `['variable_name']`
-
----
-
-## Example:
+You can create an array like this:
 
 ```
 	basic_args = [\
@@ -42,9 +32,19 @@ The best part is that everything is optional. You can include as many items in t
 		"List each file deleted",
 
 	]
+
 ```
 
-Now you can pass it to a single function that will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
+The **format** is:
+
+```
+	['alias', 'variable_name', type, 'default_value'],
+	"help string",
+```
+
+The best part is that everything is optional. You can include as many items in the above list as you need or just: `['variable_name']`
+
+Now you can pass the arary to a single function that will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
 
 ```
 	return easy_parse(basic_args)
@@ -52,8 +52,7 @@ Now you can pass it to a single function that will interpret the array, fill in 
 
 Want to see it in use in a much larger project with multiple subsections including positional and hidden args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
 
----
-
+&nbsp;
 ## Lists:
 
 Simply use the variable type `list` or a number like `3` to specify the number of required arguments:
@@ -63,19 +62,19 @@ Simply use the variable type `list` or a number like `3` to specify the number o
 	"Three items must follow this argument."
 ```
 
-
----
-
+&nbsp;
 ## Positional args, Hidden args and Subgroups:
 
-For more control you can split up arguments into groups. For example, if I wanted to add positional arguments:
+For more control you can split up arguments into groups.
+
+For example, if I wanted to add positional arguments:
 
 ```
 	pos_args = [\
-	['pos1'],
-	"Positional argument 1",
-	['pos2'],
-	"Positional argument 2",
+		['pos1'],
+		"Positional argument 1",
+		['pos2'],
+		"Positional argument 2",
 	]
 ```
 
@@ -92,18 +91,14 @@ To make a subgroup positional pass: `positionals=True`
 
 To make a subgroup hidden pass: `hidden=True`
 
-
----
-
+&nbsp;
 ## More advanced usage:
 
 Not every feature of ArgumentParser is available automatically, but because my class is built on top of ArgumentParser, you can simply add to the parser directly with standard syntax by running commands like `am.parser.add_argument(...)` with whatever features you need.
 
 Let me know if you would like to see any new features implemented!
 
-
----
-
+&nbsp;
 ## Help:
 
 By default, passing `-h` or `--help` will automatically generate a help text that looks something like this.
@@ -142,6 +137,7 @@ Optional Arguments:
 
 ---
 
+&nbsp;
 ## Try it out:
 
 A full example of this you can play with is in [**example.py**](example.py)
