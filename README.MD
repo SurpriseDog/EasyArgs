@@ -1,6 +1,5 @@
-﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. See more in the **Help** section below or just run [**example.py**](example.py) to see it in action!
+﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. You can also take full control of the help section and format it better. See more in the [Help](#help) section below, or just run [**example.py**](example.py) to see it in action!
 
----
 
 &nbsp;
 ## Format:
@@ -8,12 +7,18 @@
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
 
 ```
-    parser = argparse.ArgumentParser(allow_abbrev=True)
-    parser.add_argument('--name', dest='name', type=str, help="Enter your name")
-    parser.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
-    parser.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
-    parser.add_argument('--three', dest='three', type=str, nargs=3, help="Three items must follow this argument.")
-    return parser.parse_args()
+	def msg():
+		return "./example.py <pos arg> --options..."
+
+	parser = argparse.ArgumentParser(allow_abbrev=True, usage=msg())
+	pos = parser.add_argument_group("Positional Arguments")
+	pos.add_argument('pos1', nargs='?', default='', help="Positional argument 1")
+	basic = parser.add_argument_group("Optional Arguments")
+	basic.add_argument('--name', dest='name', default='', type=str, help="Enter your name")
+	basic.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
+	basic.add_argument('--size', nargs='?', type=float, default=100, help="Min file size in MB\nAs this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'")
+	basic.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
+	basic.add_argument('--three', dest='three', default=[], type=str, nargs=3, help="Three items must follow this argument.")
 
 ```
 
@@ -31,7 +36,7 @@ You can create an array like this:
 		['verbose', '', bool],
 		"List each file deleted",
 
-	]
+		]
 
 ```
 
@@ -71,11 +76,14 @@ For example, if I wanted to add positional arguments:
 
 ```
 	pos_args = [\
-		['pos1'],
-		"Positional argument 1",
-		['pos2'],
-		"Positional argument 2",
-	]
+
+			['pos1'],
+			"Positional argument 1",
+
+			['pos2'],
+			"Positional argument 2",
+
+		]
 ```
 
 Then you can combine all of the subgroups together with the full `ArgMaster` class like so:
@@ -130,12 +138,10 @@ Optional Arguments:
 **Features**:
   * Automatically shows the help section broken up into subgroups.
   * Automatically shows the expected argument type (if non string)
-  * Automatically shows the default value
+  * Automatically shows the default value.
   * Automatically wraps text at the edge of the screen or whatever value you like with `am.parse(wrap=???)`
 
 
-
----
 
 &nbsp;
 ## Try it out:

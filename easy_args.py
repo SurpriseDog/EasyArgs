@@ -37,12 +37,13 @@ class ArgMaster():
 	'''
 
 	def __init__(self, sortme=True, allow_abbrev=True, usage=None, description=None, newline='\n',
-				 verbose=False, **kargs):
+				 verbose=False, exit=True, **kargs):
 		self.sortme = sortme            # Sort all non positionals args
 		self.groups = []                # List of all groups
 		self.usage = usage				# Usage message
 		self.verbose = verbose			# Print what each argument does
 		self.newline = newline			# Newlines in print_help
+		self.exit = exit				# Quit on error
 		self.description = description
 		self.parser = ArgumentParser(allow_abbrev=allow_abbrev, add_help=False, usage=SUPPRESS, **kargs)
 		# Allow optionals before positionals:
@@ -65,7 +66,9 @@ class ArgMaster():
 		for arg in args:
 			if re.match('--*h$|--*help$', arg):
 				self.print_help(**kargs)
-				sys.exit(0)
+				if self.exit:
+					sys.exit(0)
+				return None
 		try:
 			if self.intermixed:
 				return self.parser.parse_intermixed_args(args)
@@ -73,7 +76,8 @@ class ArgMaster():
 				return self.parser.parse_args(args)
 		except SystemExit:
 			self.print_help(**kargs)
-			sys.exit(0)
+			if self.exit:
+				sys.exit(0)
 
 
 	def print_help(self, show_type=True, wrap=-4, tab='  '):
