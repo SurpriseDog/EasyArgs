@@ -75,8 +75,8 @@ def old_parser():
 
 def main():
 
+	print("\nArguments as interpreted by EasyArgs:\n")
 	args = my_parser()
-	print("#" * 80)
 
 	print("\nDefault argparse syntax for reference:\n")
 	easy_args.show_args(old_parser())
