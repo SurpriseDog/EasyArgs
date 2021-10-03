@@ -47,7 +47,7 @@ and get the results with:
 &nbsp;
 ## Format:
 
-The format is simply an arry with these lines:
+The format is simply an array with these lines:
 
 ```
     ['alias', 'variable_name', type, 'default_value'],

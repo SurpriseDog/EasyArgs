@@ -158,42 +158,39 @@ def argfixer():
 
 def update_parser(lines, parser=None, hidden=False, positionals=False, verbose=False):
 	'''
-	This is a more intuitive method for adding optional arguments.
-
-		Example:
-
-		basic_args = [\
-		('alias', 'variable_name', type, default),
-		"help string",
-		...
-		]
-
-		group_basic = parser.add_argument_group('Basic Arguments', '')
-		update_parser(basic_args, group_basic)
-
-	You only need to include the arguments required, but you can't skip over any.
-		('alias', '',)        # okay
-		('alias', type,)      # not okay
-
-	Substitute the word list with a number like "2" to get that number of args required.
-		('list-args, '', 2)
-
-	Positional arguments are optional by default, but you can specify a number to make them required.
-	To use them, make sure to pass: positionals=True to update_parser
-
-		('pos-arg', '', 1)
-
-	See what your arguments are producing by passing verbose=True or by doing:
-		auto_cols(sorted([[key, repr(val)] for key, val in (vars(parse_args())).items()]))
+	A more intuitive method for adding arguments
+	parser can be empty to return a new parser or a parser argument group
+	hidden = Suppress arguments from showing up in help
+	positionals = Make group positional arguments
+	verbose = Show verbosely how each line in the array is added to argparse
 
 
+	Format:
+		Pass an array with lines in the format:
+
+			('alias', 'variable_name', type, default),
+			"help string",
+
+		You only need to include the fields required, but you can't skip over any.
+			('alias', '',)        # okay
+			('alias', type,)      # not okay
+
+		Substitute the word list with a number like "2" to get that number of args required.
+			('list-args, '', 2)
+
+		Positional arguments are optional by default, but you can specify a number to make them required.
+		To use them, make sure to pass: positionals=True to update_parser
+
+			('pos-arg', '', 1)
+
+	See what your arguments are producing by passing verbose=True or running easy_args.show_args(args)
 	'''
 
 	# Make sure the loop ends on a help string
 	if not isinstance(lines[-1], str):
 		lines.append("")
 
-	alias = None        #
+	alias = None        # --variable name
 	varname = None      # Variable Name
 	default = None      # Default value
 	out = []
@@ -254,14 +251,21 @@ def update_parser(lines, parser=None, hidden=False, positionals=False, verbose=F
 		if not varname:
 			varname = alias
 
+		# Type
+		typ = list_get(args, 2, str)
+
+
+		# Default value
+		if typ == list or type(typ) == int:
+			default = list_get(args, 3, [])
+		else:
+			default = list_get(args, 3, '')
+
+
 		# Argument Type and number required
-		default = list_get(args, 3, '')
-		typ = list_get(args, 2, type(default))
 		if typ == list:
 			nargs = '*'
 			typ = str
-			if default == '':
-				default = []
 		elif isinstance(typ, int):
 			if positionals and typ == 1:
 				nargs = None
