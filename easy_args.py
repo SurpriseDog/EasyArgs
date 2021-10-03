@@ -25,6 +25,8 @@ def easy_parse(optionals_list, pos_list=None, **kargs):
 
 def show_args(uargs):
 	"Show the arguments returned"
+	if not uargs:
+		return
 	auto_cols(sorted([[key, repr(val)] for key, val in (vars(uargs)).items()]))
 	print()
 

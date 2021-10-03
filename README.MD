@@ -7,44 +7,44 @@
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
 
 ```
-	def msg():
-		return "./example.py <pos arg> --options..."
+    def msg():
+        return "./example.py <pos arg> --options..."
 
-	parser = argparse.ArgumentParser(allow_abbrev=True, usage=msg())
-	pos = parser.add_argument_group("Positional Arguments")
-	pos.add_argument('pos1', nargs='?', default='', help="Positional argument 1")
-	basic = parser.add_argument_group("Optional Arguments")
-	basic.add_argument('--name', dest='name', default='', type=str, help="Enter your name")
-	basic.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
-	basic.add_argument('--size', nargs='?', type=float, default=100, help="Min file size in MB\nAs this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'")
-	basic.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
-	basic.add_argument('--three', dest='three', default=[], type=str, nargs=3, help="Three items must follow this argument.")
+    parser = argparse.ArgumentParser(allow_abbrev=True, usage=msg())
+    pos = parser.add_argument_group("Positional Arguments")
+    pos.add_argument('pos1', nargs='?', default='', help="Positional argument 1")
+    basic = parser.add_argument_group("Optional Arguments")
+    basic.add_argument('--name', dest='name', default='', type=str, help="Enter your name")
+    basic.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
+    basic.add_argument('--size', nargs='?', type=float, default=100, help="Min file size in MB\nAs this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'")
+    basic.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
+    basic.add_argument('--three', dest='three', default=[], type=str, nargs=3, help="Three items must follow this argument.")
 
 ```
 
 You can create an array like this:
 
 ```
-	basic_args = [\
+    basic_args = [\
 
-		['name'],
-		"Enter your name",
+        ['name'],
+        "Enter your name",
 
-		['age', 'min_age', int, 365],
-		"File age in days",
+        ['age', 'min_age', int, 365],
+        "File age in days",
 
-		['verbose', '', bool],
-		"List each file deleted",
+        ['verbose', '', bool],
+        "List each file deleted",
 
-		]
+        ]
 
 ```
 
 The **format** is:
 
 ```
-	['alias', 'variable_name', type, 'default_value'],
-	"help string",
+    ['alias', 'variable_name', type, 'default_value'],
+    "help string",
 ```
 
 The best part is that everything is optional. You can include as many items in the above list as you need or just: `['variable_name']`
@@ -52,7 +52,7 @@ The best part is that everything is optional. You can include as many items in t
 Now you can pass the arary to a single function that will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
 
 ```
-	return easy_parse(basic_args)
+    return easy_parse(basic_args)
 ```
 
 Want to see it in use in a much larger project with multiple subsections including positional and hidden args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
@@ -63,8 +63,8 @@ Want to see it in use in a much larger project with multiple subsections includi
 Simply use the variable type `list` or a number like `3` to specify the number of required arguments:
 
 ```
-	['three', '', 3],
-	"Three items must follow this argument."
+    ['three', '', 3],
+    "Three items must follow this argument."
 ```
 
 &nbsp;
@@ -75,24 +75,24 @@ For more control you can split up arguments into groups.
 For example, if I wanted to add positional arguments:
 
 ```
-	pos_args = [\
+    pos_args = [\
 
-			['pos1'],
-			"Positional argument 1",
+            ['pos1'],
+            "Positional argument 1",
 
-			['pos2'],
-			"Positional argument 2",
+            ['pos2'],
+            "Positional argument 2",
 
-		]
+        ]
 ```
 
 Then you can combine all of the subgroups together with the full `ArgMaster` class like so:
 
 ```
-	am = ArgMaster(usage="...")
-	am.update(pos_args, 'Positional Arguments:', positionals=True)
-	am.update(basic_args, 'Optional Arguments:')
-	return am.parse()
+    am = ArgMaster(usage="...")
+    am.update(pos_args, 'Positional Arguments:', positionals=True)
+    am.update(basic_args, 'Optional Arguments:')
+    return am.parse()
 ```
 
 To make a subgroup positional pass: `positionals=True`
