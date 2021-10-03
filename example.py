@@ -29,7 +29,7 @@ def my_parser():
     # A list of Optional arguments
     basic_args = [\
         ['name'],
-        "Enter your name",
+        "enter your name",
 
         ['age', 'min_age', int, 365],
         "File age in days",
