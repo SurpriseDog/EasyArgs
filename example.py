@@ -37,11 +37,13 @@ def my_parser():
         ['size', '', float, 100],
         '''
         Min file size in MB
-        As this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'
+        As this is a multline help in the source code,
+        the second line has been automatically bumped down.
+        Starting at the word 'As'
         ''',
 
         ['verbose', '', bool],
-        '''Make everything very verbose. As verbosity is very important to understanding this is a very verbose help line. As you can see it wraps at the edge of the screen (or the given `wrap` value, whichever is lower), but fear not! It will automatically fit neatly into it's place thanks to the magic in sd/columns.py''',
+        '''Make everything very verbose. As verbosity is very important to understanding, this is a very verbose help line. As you can see it wraps at the edge of the screen (or the given `wrap` value, whichever is lower), but fear not! It will automatically fit neatly into it's place thanks to the magic in sd/columns.py''',
 
         ['three', None, 3],
         "Three items must follow this argument.",
@@ -56,9 +58,7 @@ def old_parser():
 
     def msg():
         return "./example.py <pos arg> --options..."
-
     parser = argparse.ArgumentParser(allow_abbrev=True, usage=msg())
-
     pos = parser.add_argument_group("Positional Arguments")
     pos.add_argument('pos1', nargs='?', default='', help="Positional argument 1")
 
@@ -70,13 +70,14 @@ def old_parser():
     basic.add_argument('--size', nargs='?', type=float, default=100,
                        help='''
                             Min file size in MB
-                            As this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'
+                            As this is a multline help in the source code,
+                            the second line has been automatically bumped down.
+                            Starting at the word 'As'
                             ''')
     basic.add_argument('--verbose', '-v', action='store_true',
-                       help="List each file deleted")
+                       help='''Make everything very verbose. As verbosity is very important to understanding, this is a very verbose help line. As you can see it wraps at the edge of the screen (or the given `wrap` value, whichever is lower), but fear not! It will automatically fit neatly into it's place thanks to the magic in sd/columns.py''')
     basic.add_argument('--three', dest='three', default=[], type=str, nargs=3,
                        help="Three items must follow this argument.")
-
     return parser.parse_args()
 
 

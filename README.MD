@@ -1,8 +1,7 @@
 ﻿A more simple and intuitive way of adding arguments to argparse. Will also automatically format a help message that shows default variable names, expected type and wraps lines at the edge of the screen into neat blocks. You can also take full control of the help section and format it better. See more in the [Help](#help) section below, or just run [**example.py**](example.py) to see it in action!
 
-
 &nbsp;
-## Format:
+## Usage:
 
 Instead of trying to remember how to implement and type this mess (and keep it under the line limit):
 
@@ -17,12 +16,12 @@ Instead of trying to remember how to implement and type this mess (and keep it u
     basic.add_argument('--name', dest='name', default='', type=str, help="Enter your name")
     basic.add_argument('--age', dest='min_age', nargs='?', type=int, default=365, help="File age in days")
     basic.add_argument('--size', nargs='?', type=float, default=100, help="Min file size in MB\nAs this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'")
-    basic.add_argument('--verbose', '-v', action='store_true', help="List each file deleted")
+    basic.add_argument('--verbose', '-v', action='store_true', help="Very verbose help")
     basic.add_argument('--three', dest='three', default=[], type=str, nargs=3, help="Three items must follow this argument.")
 
 ```
 
-You can create an array like this:
+You can just create an array like this:
 
 ```
     basic_args = [\
@@ -39,23 +38,24 @@ You can create an array like this:
         ]
 
 ```
+and get the results with:
 
-The **format** is:
+```
+    return easy_parse(basic_args)
+```
+
+&nbsp;
+## Format:
+
+The format is simply an arry with these lines:
 
 ```
     ['alias', 'variable_name', type, 'default_value'],
     "help string",
 ```
 
-The best part is that everything is optional. You can include as many items in the above list as you need or just: `['variable_name']`
+The best part is that everything is optional (including the help line). You can include as many items in the above list as you need or just: `['variable_name']` easy_parse() will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
 
-Now you can pass the arary to a single function that will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
-
-```
-    return easy_parse(basic_args)
-```
-
-Want to see it in use in a much larger project with multiple subsections including positional and hidden args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
 
 &nbsp;
 ## Lists:
@@ -95,16 +95,13 @@ Then you can combine all of the subgroups together with the full `ArgMaster` cla
     return am.parse()
 ```
 
-To make a subgroup positional pass: `positionals=True`
-
-To make a subgroup hidden pass: `hidden=True`
+  * To make a subgroup **positional** pass: `positionals=True`
+  * To make a subgroup **hidden** pass: `hidden=True`
 
 &nbsp;
 ## More advanced usage:
 
-Not every feature of ArgumentParser is available automatically, but because my class is built on top of ArgumentParser, you can simply add to the parser directly with standard syntax by running commands like `am.parser.add_argument(...)` with whatever features you need.
-
-Let me know if you would like to see any new features implemented!
+Not every feature of ArgumentParser is available automatically yet, but because my class is built on top of ArgumentParser, you can simply add to the parser directly with standard syntax by running commands like `am.parser.add_argument(...)` with whatever features you need. Let me know if you would like to see any new features implemented!
 
 &nbsp;
 ## Help:
@@ -127,7 +124,7 @@ Optional Arguments:
                     automatically bumped down. Starting at the word 'As'  Default: 100
   --three <str>     Three items must follow this argument.
   --verbose         Make everything very verbose. As verbosity is very important to
-                    understanding this is a very verbose help line. As you can see it wraps at
+                    understanding, this is a very verbose help line. As you can see it wraps at
                     the edge of the screen (or the given `wrap` value, whichever is lower), but
                     fear not! It will automatically fit neatly into it's place thanks to the
                     magic in sd/columns.py.
@@ -136,8 +133,9 @@ Optional Arguments:
 
 
 **Features**:
+
   * No more: `--help` showing up under its own optional section.
-  * No more: [DEFAULT_ARGUMENT_NAME] showing up in help.
+  * No more: `[DEFAULT_ARGUMENT_NAME]` showing up in help.
   * Newlines in help messages. Just add `\n` to your strings.
   * Automatically shows the help section broken up into subgroups.
   * Automatically shows the expected argument type (if non string)
@@ -152,3 +150,5 @@ Optional Arguments:
 A full example of this you can play with is in [**example.py**](example.py)
 
 You can see what each line is doing exactly by passing `verbose=True` to the `ArgMaster` class on initialization.
+
+Want to see it in use in a much larger project with multiple subsections including positional and hidden args? Check out the parse_args() function in [this project](https://github.com/SurpriseDog/KeyLocker/blob/master/args.py)
