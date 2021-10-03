@@ -136,6 +136,9 @@ Optional Arguments:
 
 
 **Features**:
+  * No more: `--help` showing up under its own optional section.
+  * No more: [DEFAULT_ARGUMENT_NAME] showing up in help.
+  * Newlines in help messages. Just add `\n` to your strings.
   * Automatically shows the help section broken up into subgroups.
   * Automatically shows the expected argument type (if non string)
   * Automatically shows the default value.

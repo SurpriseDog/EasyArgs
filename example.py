@@ -71,7 +71,7 @@ def old_parser():
                        help='''
                             Min file size in MB
                             As this is a multline help in the source code, the second line has been automatically bumped down. Starting at the word 'As'
-        ''')
+                            ''')
     basic.add_argument('--verbose', '-v', action='store_true',
                        help="List each file deleted")
     basic.add_argument('--three', dest='three', default=[], type=str, nargs=3,
