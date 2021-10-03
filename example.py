@@ -47,6 +47,10 @@ def my_parser():
 
         ['three', '', 3],
         "Three items must follow this argument.",
+
+        ['list', '', list],
+        "A list of unknown length",
+
         ]
     am.update(basic_args, 'Optional Arguments:')
 
@@ -78,6 +82,8 @@ def old_parser():
                        help='''Make everything very verbose. As verbosity is very important to understanding, this is a very verbose help line. As you can see it wraps at the edge of the screen (or the given `wrap` value, whichever is lower), but fear not! It will automatically fit neatly into it's place thanks to the magic in sd/columns.py''')
     basic.add_argument('--three', dest='three', default=[], type=str, nargs=3,
                        help="Three items must follow this argument.")
+    basic.add_argument('--list', dest='list', default=[], type=str, nargs='*',
+                       help="A list of unknown length")
     return parser.parse_args()
 
 
