@@ -54,7 +54,7 @@ The format is simply an array with these lines:
     "help string",
 ```
 
-The best part is that everything is optional (including the help line). You can include as many items in the above list as you need or just: `['variable_name']` easy_parse() will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h`
+The best part is that everything is optional (including the help line). You can include as many items in the above list as you need or just: `['variable_name']` easy_parse() will interpret the array, fill in any missing sections, allow for abbreviated commands and format a nice help message if the user passes `-h` Don't worry about dashes, by default either '-' or '--' will work automatically.
 
 
 &nbsp;
@@ -141,6 +141,7 @@ Optional Arguments:
   * Automatically shows the expected argument type (if non string)
   * Automatically shows the default value.
   * Automatically wraps text at the edge of the screen or whatever value you like with `am.parse(wrap=???)`
+  * Automatically capitalizes first letter and adds a period.
 
 
 
